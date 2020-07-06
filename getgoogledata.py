@@ -40,18 +40,22 @@ def get_google_data(sheet_range):
 
 
 def get_japa_data(reminder_time):
-    file_name = '/Users/bthiruv/PycharmProjects/ARJNotification/japa_data.csv'
+    file_name = 'F:\development\whatsappbot-master\japa_data.csv'
     print("Getting Data from Google Sheet")
     try:
         japa_data_1 = get_google_data('japa1!A1:E100')
         japa_data_2 = get_google_data('japa2!A1:E100')
+        japa_data_3 = get_google_data('japa3!A1:E100')
+
         df_japa1 = pd.DataFrame(japa_data_1[1:], columns=japa_data_1[1])
         df_japa2 = pd.DataFrame(japa_data_2[1:], columns=japa_data_2[1])
-
+        df_japa3 = pd.DataFrame(japa_data_3[1:], columns=japa_data_3[1])
         df_japa1['Group'] = 'Japa1'
         df_japa2['Group'] = 'Japa2'
+        df_japa3['Group'] = 'Japa3'
 
-        df_japa = df_japa1.append(df_japa2)
+        df_japa1_2 = df_japa1.append(df_japa2)
+        df_japa = df_japa1_2.append(df_japa3)
 
         if os.path.exists(file_name):
             print("Old file is removed")
